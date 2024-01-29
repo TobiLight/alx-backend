@@ -1,6 +1,17 @@
 import csv
-import math
 from typing import List
+from typing import Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """
+    Returns a tuple of size two containing a start index
+    and an end index
+    """
+    start = (page - 1) * page_size
+    end = start + page_size
+
+    return (start, end)
 
 
 class Server:
@@ -28,8 +39,6 @@ class Server:
         """
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-
-        index_range = __import__('0-simple_helper_function').index_range
 
         start, end = index_range(page, page_size)
         return self.dataset()[start:end]
