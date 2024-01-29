@@ -26,7 +26,7 @@ class Server:
         """
         Retrieves and returns a specific page of data from a dataset.
         """
-        assert isinstance(page, int) and page >= 1
+        assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
 
         index_range = __import__('0-simple_helper_function').index_range
