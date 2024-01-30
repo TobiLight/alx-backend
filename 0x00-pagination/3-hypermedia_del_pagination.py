@@ -44,15 +44,14 @@ class Server:
         and page_size.
         """
         dataset = self.indexed_dataset()
+
         assert isinstance(index, int) and index >= 0
         assert index <= max(dataset.keys())  # check if index is out of range
-        # assert index is not None and index >= 0 and index <= max(
-        #     dataset.keys())
 
         start = index
         indexed_data = []
         count = 0
-        next_index = index * page_size
+        next_index = None
 
         for idx, item in dataset.items():
             if idx >= start and count < page_size:
