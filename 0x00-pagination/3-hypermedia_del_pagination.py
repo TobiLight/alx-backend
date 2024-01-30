@@ -45,24 +45,25 @@ class Server:
         Return a dictionary with pagination information based on index
         and page_size.
         """
-        data = self.indexed_dataset()
-        assert index is not None and index >= 0 and index <= max(data.keys())
-        page_data = []
-        data_count = 0
-        next_index = None
+        dataset = self.indexed_dataset()
+
+        assert isinstance(index, int) and index >= 0
+        assert isinstance(page_size, int) and page_size > 0
+        assert index <= len(dataset)  # check if index is out of range
+
         start = index if index else 0
-        for i, item in data.items():
-            if i >= start and data_count < page_size:
-                page_data.append(item)
-                data_count += 1
+        indexed_data = []
+        count = 0
+        next_index = None
+
+        for idx, item in dataset.items():
+            if idx >= start and count < page_size:
+                count += 1
+                indexed_data.append(item)
                 continue
-            if data_count == page_size:
-                next_index = i
+            if count == page_size:
+                next_index = idx
                 break
-        page_info = {
-            'index': index,
-            'next_index': next_index,
-            'page_size': len(page_data),
-            'data': page_data,
-        }
-        return page_info
+
+        return {"index": index, "data": indexed_data,
+                "page_size": len(indexed_data), "next_index": next_index}
