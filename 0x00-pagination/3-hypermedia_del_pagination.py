@@ -54,7 +54,7 @@ class Server:
         start = index
         indexed_data = []
         count = 0
-        next_index = index * page_size
+        next_index = None
 
         for idx, item in dataset.items():
             if idx >= start and count < page_size:
