@@ -66,4 +66,4 @@ class Server:
                 break
 
         return {"index": index, "data": indexed_data,
-                "page_size": page_size, "next_index": next_index}
+                "page_size": len(indexed_data), "next_index": next_index}
