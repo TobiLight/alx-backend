@@ -48,7 +48,8 @@ class Server:
         # assert isinstance(index, int) and index >= 0
         # assert isinstance(page_size, int) and page_size > 0
         # assert index <= len(dataset)  # check if index is out of range
-        assert index is not None and index >= 0 and index <= max(data.keys())
+        assert index is not None and index >= 0 and index <= max(
+            dataset.keys())
 
         start = index if index else 0
         indexed_data = []
