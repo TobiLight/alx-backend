@@ -38,17 +38,17 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None,
-                        page_size: int = 10) -> Dict:
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
         Return a dictionary with pagination information based on index
         and page_size.
         """
         dataset = self.indexed_dataset()
 
-        assert isinstance(index, int) and index >= 0
-        assert isinstance(page_size, int) and page_size > 0
-        assert index <= len(dataset)  # check if index is out of range
+        # assert isinstance(index, int) and index >= 0
+        # assert isinstance(page_size, int) and page_size > 0
+        # assert index <= len(dataset)  # check if index is out of range
+        assert index is not None and index >= 0 and index <= max(data.keys())
 
         start = index if index else 0
         indexed_data = []
