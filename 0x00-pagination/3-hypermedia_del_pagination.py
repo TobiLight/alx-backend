@@ -51,10 +51,10 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
         assert index <= len(dataset)  # check if index is out of range
 
-        start = index
+        start = index if index else 0
         indexed_data = []
         count = 0
-        next_index = None
+        next_index = index * page_size
 
         for idx, item in dataset.items():
             if idx >= start and count < page_size:
