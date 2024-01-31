@@ -9,7 +9,7 @@ from base_caching import BaseCaching
 
 class BasicCache(BaseCaching):
     """
-    Implements a simple caching system
+    Implements a simple caching system 
     """
 
     def __init__(self):
