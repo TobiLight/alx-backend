@@ -33,3 +33,10 @@ class FIFOCache(BaseCaching):
             popped_key = self.cached_keys.popleft()
             del self.cache_data[popped_key]
             print("DISCARD: {}".format(popped_key))
+
+    def get(self, key):
+        """
+        Retrieves the value associated with the given key from the
+        cache_data dictionary.
+        """
+        return self.cache_data.get(key, None)  # shorter and cleaner ✔
