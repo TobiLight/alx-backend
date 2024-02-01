@@ -45,4 +45,4 @@ class LRUCache(BaseCaching):
                 self.lru.remove(key)
             self.lru.append(key)
             return self.cache_data[key]
-        return self.cache_data.get(key, None)
+        return None
