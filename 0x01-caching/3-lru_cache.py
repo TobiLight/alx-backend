@@ -26,20 +26,23 @@ class LRUCache(BaseCaching):
         Adds an item to the cache_data dictionary with the given key.
         """
         if key is not None and item is not None:
-            self.cache_data[key] = item
-            if key not in self.lru:
-                self.lru.append(key)
-            else:
-                self.lru.append(
-                    self.lru.pop(self.lru.index(key)))
             if len(self.lru) > BaseCaching.MAX_ITEMS:
-                discard = self.lru.pop(0)
-                del self.cache_data[discard]
-                print('DISCARD: {:s}'.format(discard))
+                popped_key = self.lru.pop(0)
+                del self.cache_data[popped_key]
+                print('popped_key: {}'.format(popped_key))
+            self.cache_data[key] = item
+            if key in self.lru:
+                self.lru.remove(key)
+            self.lru.append(key)
 
     def get(self, key):
         """
         Retrieves the value associated with the given key from the
         cache_data dictionary.
         """
+        if key is not None and key in self.cache_data:
+            if key in self.lru:
+                self.lru.remove(key)
+            self.lru.append(key)
+            return self.cache_data[key]
         return self.cache_data.get(key, None)
