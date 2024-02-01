@@ -12,7 +12,6 @@ class LRUCache(BaseCaching):
     """
     Implements a Least Recently Used Caching system
     """
-
     def __init__(self):
         """
         Initializes a BasicCache instance with an empty
