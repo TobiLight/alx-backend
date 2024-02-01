@@ -20,21 +20,22 @@ class LRUCache(BaseCaching):
         """
         super().__init__()
         self.lru = []
-        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         """
         Adds an item to the cache_data dictionary with the given key.
         """
         if key is not None and item is not None:
-            if key not in self.cache_data:
-                if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-                    lru_key, _ = self.cache_data.popitem(True)
-                    print("DISCARD:", lru_key)
             self.cache_data[key] = item
-            self.cache_data.move_to_end(key, last=False)
-        else:
-            self.cache_data[key] = item
+            if key not in self.lru:
+                self.lru.append(key)
+            else:
+                self.lru.append(
+                    self.lru.pop(self.lru.index(key)))
+            if len(self.lru) > BaseCaching.MAX_ITEMS:
+                discard = self.lru.pop(0)
+                del self.cache_data[discard]
+                print('DISCARD: {:s}'.format(discard))
 
     def get(self, key):
         """
