@@ -18,7 +18,6 @@ class LIFOCache(BaseCaching):
         cache_data dictionary.
         """
         self.stack = []
-        # self.cache_data
         super().__init__()
 
     def put(self, key, item):
@@ -33,9 +32,13 @@ class LIFOCache(BaseCaching):
 
         if key is not None and item is not None:
             if key in self.cache_data.keys():
+                # get index of key in stack
                 key_idx_stack = self.stack.index(key)
+                # delete the key in the stack
                 self.stack.pop(key_idx_stack)
+                # remove the item in the dict using the key
                 self.cache_data.pop(key)
+                # add the item again so it is at the end of the dict
                 self.cache_data[key] = item
             else:
                 self.cache_data[key] = item
