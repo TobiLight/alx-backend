@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # File: 5-app.py
 # Author: Oluwatobiloba Light
-"""Flask app with internalization support"""
+"""Mock user login"""
 from typing import Dict, Union
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
@@ -52,7 +52,7 @@ def before_request():
     if 'login_as' in request.args:
         user = get_user(int(request.args['login_as']))
         g.user = user
-        
+
 
 @app.route("/")
 def index():
