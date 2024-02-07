@@ -88,7 +88,7 @@ def get_timezone() -> str:
         tz = pytz.timezone(timezone)
         localized_time = tz.localize(
             utc_time).strftime('%b %d, %Y, %I:%M:%S %p')
-        return str(localized_time)
+        return localized_time
     except UnknownTimeZoneError:
         return app.config['BABEL_DEFAULT_TIMEZONE']
 
