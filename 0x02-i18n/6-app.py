@@ -42,6 +42,7 @@ def before_request():
         user = get_user(int(request.args['login_as']))
         g.user = user
 
+
 @babel.localeselector
 def get_locale() -> str:
     """
