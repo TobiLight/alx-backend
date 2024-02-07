@@ -41,6 +41,7 @@ users = {
 
 
 def get_user(login_as: int) -> Union[Dict, None]:
+    """Returns a user dictionary or None"""
     if not login_as:
         return None
     return users.get(login_as, None)
