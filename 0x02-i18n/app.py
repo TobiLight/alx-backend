@@ -46,7 +46,7 @@ def before_request() -> None:
         g.time = get_timezone()
 
 
-# @babel.localeselector
+@babel.localeselector
 def get_locale() -> str:
     """
     Get the best matched language based on the client's accepted languages
@@ -72,7 +72,7 @@ def get_locale() -> str:
     return default
 
 
-# @babel.timezoneselector
+@babel.timezoneselector
 def get_timezone() -> str:
     """Get the preferred timezone from URL parameters or default to UTC"""
     # get timezone from url params
